@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3, h4 {
+    color: #e6d7ff; /* Lilac color */
+}
+
+form {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.custom-file-upload, .rounded-link, .custom-submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none; /* Remove default link underline */
+}
+
+.custom-file-upload {
+    margin-right: 10px; /* Add some space between the file input and the button */
+}
+
+.custom-submit-button {
+    margin-left: 10px;
+    background-color: #e6d7ff; /* Lilac color for button background */
+    color: #fff; /* White text for contrast */
+    font-size: inherit; /* Use the same font size as the parent element */
+}
+
+.custom-submit-button:hover {
+    background-color: #ccafd4; /* Darker lilac color on hover */
+    color: #1d0b33; /* Darker text color on hover */
+}
+
+#selected-file-name {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Add some margin at the bottom */
+    margin-right: 15px; /* Add space to the right */
+    margin-left: 15px;  /* Add space to the left */
+    color: #666; /* Grey text color for the selected file display */
+}
+
+.tab {
+    display: none;
+    margin-right: 5px; /* Add separation between tab buttons */
+    padding: 8px; /* Add padding to create space inside the tab button */
+    border: 1px solid #ccc; /* Add a border to visually separate tabs */
+    border-radius: 5px; /* Add border radius for a rounded appearance */
+    background-color: #f4f4f4; /* Add a background color for better visibility */
+}
+
+#tabs .rounded-link {
+    margin-right: 5px; /* Add separation between dynamically generated tabs */
+}
+
+.label, .custom-file-upload, .rounded-link {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.label {
+    background-color: #e6d7ff; /* Lilac color for label background */
+    color: #fff; /* White text for contrast */
+}
+
+.custom-file-upload, .rounded-link {
+    background-color: #e6d7ff; /* Lilac color for button background and links */
+    color: #fff; /* White text for contrast */
+}
+
+.custom-file-upload:hover, .rounded-link:hover {
+    background-color: #ccafd4; /* Darker lilac color on hover */
+    color: #1d0b33; /* Darker text color on hover */
+}
+
+input[type="file"] {
+    display: none; /* Hide the default file input button */
+}
+
+/* Add these styles for the alert */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 1.5s ease-out;
+}
+
+.alert-success {
+    background-color: #e6d7ff; /* Lilac background color */
+    color: #2f1760; /* Darker lilac text color */
+}
+
+.alert-error {
+    background-color: #ffdce0; /* Light red background color */
+    color: #721c24; /* Dark red text color */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Add CSS styles for the progress bar */
+.progress-container {
+    margin-top: 20px;
+    display: none;
+}
+
+.progress-bar {
+    width: 0;
+    height: 20px;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 20px;
+    color: white;
+}

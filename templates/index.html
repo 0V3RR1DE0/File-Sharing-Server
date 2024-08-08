@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing Web Server</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>File Sharing Web Server</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                    <script>
+                        // Add JavaScript to fade out the alert after 1.5 seconds
+                        setTimeout(function() {
+                            var alertDiv = document.querySelector('.alert');
+                            alertDiv.style.opacity = '0';
+                            // Reload the page after the alert fades out
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        }, 1500);
+                    </script>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+            <label for="file" class="custom-file-upload">Choose file</label>
+            <input type="file" name="file" id="file" required onchange="displaySelectedFileName()">
+            <span id="selected-file-name"></span>
+            <button type="button" onclick="uploadFile()" class="custom-submit-button">Upload File</button>
+        </form>
+        <a href="/files" class="rounded-link">View Files</a>
+
+        <!-- Progress bar container -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar" style="background-color: #e6d7ff;">0%</div>
+        </div>
+    </div>
+
+    <script>
+        function displaySelectedFileName() {
+            var fileInput = document.getElementById('file');
+            var fileNameSpan = document.getElementById('selected-file-name');
+
+            fileNameSpan.textContent = fileInput.files[0] ? fileInput.files[0].name : '';
+        }
+
+        function uploadFile() {
+            var fileInput = document.getElementById('file');
+            var progressBar = document.getElementById('progressBar');
+            var progressContainer = document.querySelector('.progress-container');
+            var formData = new FormData(document.getElementById('uploadForm'));
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.upload.addEventListener('progress', function(event) {
+                if (event.lengthComputable) {
+                    var percentComplete = (event.loaded / event.total) * 100;
+                    progressBar.style.width = percentComplete + '%';
+                    progressBar.textContent = percentComplete.toFixed(2) + '%';
+
+                    // Show the progress bar container
+                    progressContainer.style.display = 'block';
+
+                    // Calculate and display the estimated time left
+                    var secondsLeft = (event.total - event.loaded) / (event.loaded / (event.timeStamp / 1000));
+                    var minutesLeft = Math.floor(secondsLeft / 60);
+                    secondsLeft = Math.floor(secondsLeft % 60);
+                    progressBar.textContent += ' - ' + minutesLeft + 'm ' + secondsLeft + 's left';
+                }
+            });
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    // Hide the progress bar container after completion
+                    progressContainer.style.display = 'none';
+
+                    // Reload the page after upload is complete
+                    refreshPage();
+                }
+            };
+
+            xhr.open('POST', '/upload', true);
+            xhr.send(formData);
+        }
+
+        function refreshPage() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>

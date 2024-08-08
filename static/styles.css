@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Soft gray background */
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fdfdfd; /* Off-white container background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3, h4 {
+    color: #6b5eae; /* Soft purple heading color */
+}
+
+form {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.custom-file-upload, .rounded-link, .custom-submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none; /* Remove default link underline */
+}
+
+.custom-file-upload {
+    margin-right: 10px; /* Add some space between the file input and the button */
+}
+
+.custom-submit-button {
+    margin-left: 10px;
+    background-color: #6b5eae; /* Soft purple button background */
+    color: #fff; /* White text for contrast */
+    font-size: inherit; /* Use the same font size as the parent element */
+}
+
+.custom-submit-button:hover {
+    background-color: #5a4a99; /* Darker purple on hover */
+    color: #fff; /* White text for contrast */
+}
+
+#selected-file-name {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px; /* Add some margin at the bottom */
+    margin-right: 15px; /* Add space to the right */
+    margin-left: 15px;  /* Add space to the left */
+    color: #888; /* Soft gray text color for the selected file display */
+}
+
+.tab {
+    display: none;
+    margin-right: 5px; /* Add separation between tab buttons */
+    padding: 8px; /* Add padding to create space inside the tab button */
+    border: 1px solid #ddd; /* Light border for visually separating tabs */
+    border-radius: 5px; /* Add border radius for a rounded appearance */
+    background-color: #f8f8f8; /* Off-white background for better visibility */
+}
+
+#tabs .rounded-link {
+    margin-right: 5px; /* Add separation between dynamically generated tabs */
+}
+
+.label, .custom-file-upload, .rounded-link {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.label {
+    background-color: #6b5eae; /* Soft purple label background */
+    color: #fff; /* White text for contrast */
+}
+
+.custom-file-upload, .rounded-link {
+    background-color: #6b5eae; /* Soft purple button background and links */
+    color: #fff; /* White text for contrast */
+}
+
+.custom-file-upload:hover, .rounded-link:hover {
+    background-color: #5a4a99; /* Darker purple on hover */
+    color: #fff; /* White text for contrast */
+}
+
+input[type="file"] {
+    display: none; /* Hide the default file input button */
+}
+
+/* Add these styles for the alert */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 1.5s ease-out;
+}
+
+.alert-success {
+    background-color: #6b5eae; /* Soft purple background for success */
+    color: #fff; /* White text for contrast */
+}
+
+.alert-error {
+    background-color: #ffdede; /* Light red background for error */
+    color: #a94442; /* Dark red text for error */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Add CSS styles for the progress bar */
+.progress-container {
+    margin-top: 20px;
+    display: none;
+}
+
+.progress-bar {
+    width: 0;
+    height: 20px;
+    background-color: #6b5eae; /* Soft purple for progress bar */
+    border-radius: 5px;
+    text-align: center;
+    line-height: 20px;
+    color: #fff; /* White text for contrast */
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>File List</h2>
+
+        <div id="tabs">
+            <!-- Tabs will be dynamically added here -->
+        </div>
+
+        <!-- Display the currently selected extension -->
+        <h4>Current Extension: <span id="currentExtension"></span></h4>
+
+        <!-- Container for each tab content -->
+        <div id="tabContent">
+            <!-- Content for each tab will be dynamically added here -->
+        </div>
+
+        <br>
+        <a href="/" class="rounded-link">Back to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var files = {{ files | tojson }};
+
+            // Get unique file extensions
+            var extensions = [...new Set(files.map(file => file.split('.').pop()))];
+
+            // Create tabs dynamically
+            var tabsContainer = document.getElementById('tabs');
+            var tabContentContainer = document.getElementById('tabContent');
+            var currentExtensionSpan = document.getElementById('currentExtension');
+
+            extensions.forEach(extension => {
+                var tab = document.createElement('button');
+                tab.className = 'rounded-link';
+                tab.textContent = '.' + extension;
+                tab.addEventListener('click', function () {
+                    showTabContent(extension);
+                });
+
+                tabsContainer.appendChild(tab);
+
+                var tabContent = document.createElement('ul');
+                tabContent.id = 'tab_' + extension;
+                tabContent.className = 'tab';
+                tabContentContainer.appendChild(tabContent);
+            });
+
+            // Display the first tab by default
+            if (extensions.length > 0) {
+                showTabContent(extensions[0]);
+            }
+
+            function showTabContent(extension) {
+                // Update the currentExtension element
+                currentExtensionSpan.textContent = '.' + extension;
+
+                // Hide all tabs
+                extensions.forEach(ext => {
+                    document.getElementById('tab_' + ext).style.display = 'none';
+                });
+
+                // Show the selected tab
+                document.getElementById('tab_' + extension).style.display = 'block';
+
+                // Populate the tab content with files
+                var tabContent = document.getElementById('tab_' + extension);
+                tabContent.innerHTML = '';
+
+                files.filter(file => file.endsWith('.' + extension)).forEach(file => {
+                    var listItem = document.createElement('li');
+                    var link = document.createElement('a');
+                    link.href = "/download/" + file;
+                    link.className = 'rounded-link';
+                    link.textContent = file;
+
+                    // Add the 'download' attribute to force download
+                    link.setAttribute('download', '');
+
+                    listItem.appendChild(link);
+                    tabContent.appendChild(listItem);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
