@@ -16,11 +16,9 @@
                         {{ message }}
                     </div>
                     <script>
-                        // Add JavaScript to fade out the alert after 1.5 seconds
                         setTimeout(function() {
                             var alertDiv = document.querySelector('.alert');
                             alertDiv.style.opacity = '0';
-                            // Reload the page after the alert fades out
                             setTimeout(function() {
                                 location.reload();
                             }, 1500);
@@ -35,9 +33,8 @@
             <span id="selected-file-name"></span>
             <button type="button" onclick="uploadFile()" class="custom-submit-button">Upload File</button>
         </form>
-        <a href="/files" class="rounded-link">View Files</a>
+        <a href="/files" class="rounded-link">View Files and Folders</a>
 
-        <!-- Progress bar container -->
         <div class="progress-container">
             <div class="progress-bar" id="progressBar" style="background-color: #e6d7ff;">0%</div>
         </div>
